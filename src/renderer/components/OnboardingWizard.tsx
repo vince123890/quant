@@ -91,6 +91,7 @@ export function OnboardingWizard() {
     enabled: false,
     baseUrl: 'http://127.0.0.1:8080',
     model: 'gemma-4-e4b',
+    apiKey: '',
   });
   const [savingLlm, setSavingLlm] = useState(false);
 
@@ -240,8 +241,9 @@ export function OnboardingWizard() {
               <h3>Configure Quant AI</h3>
               <p>
                 Quant AI is optional. When disabled, the agent still returns a deterministic
-                memo from the signal engine. When enabled, Quant calls an OpenAI-compatible
-                local server for richer chart discussion.
+                memo from the signal engine. When enabled, Quant calls any OpenAI-compatible
+                endpoint for richer chart discussion: a hosted provider (OpenRouter, Groq,
+                OpenAI) with an API key, or a local server (LM Studio, Ollama, llama.cpp).
               </p>
             </div>
             <label className="ob-toggle">
@@ -250,7 +252,7 @@ export function OnboardingWizard() {
                 checked={llm.enabled}
                 onChange={(event) => setLlm((current) => ({ ...current, enabled: event.currentTarget.checked }))}
               />
-              Enable local LLM calls
+              Enable LLM calls
             </label>
             <div className="ob-form-grid">
               <label>
@@ -258,7 +260,7 @@ export function OnboardingWizard() {
                 <input
                   value={llm.baseUrl}
                   onChange={(event) => setLlm((current) => ({ ...current, baseUrl: event.currentTarget.value }))}
-                  placeholder="http://127.0.0.1:8080"
+                  placeholder="https://openrouter.ai/api"
                 />
               </label>
               <label>
@@ -266,17 +268,28 @@ export function OnboardingWizard() {
                 <input
                   value={llm.model}
                   onChange={(event) => setLlm((current) => ({ ...current, model: event.currentTarget.value }))}
-                  placeholder="gemma-4-e4b"
+                  placeholder="openai/gpt-4o-mini"
+                />
+              </label>
+              <label>
+                <span>API key (hosted providers only)</span>
+                <input
+                  type="password"
+                  value={llm.apiKey ?? ''}
+                  onChange={(event) => setLlm((current) => ({ ...current, apiKey: event.currentTarget.value }))}
+                  placeholder="sk-or-... (leave empty for a local server)"
                 />
               </label>
             </div>
             <div className="ob-note">
-              <strong>Expected server shape</strong>
+              <strong>Endpoint shape</strong>
               <span>
-                Quant checks <code>GET /health</code> and sends chat to{' '}
-                <code>POST /v1/chat/completions</code>. LM Studio, llama.cpp server,
-                Ollama OpenAI-compatible mode, or a small proxy can work if they expose
-                those routes.
+                Chat goes to <code>POST {'{Server URL}'}/v1/chat/completions</code>. Hosted:
+                OpenRouter <code>https://openrouter.ai/api</code>, Groq{' '}
+                <code>https://api.groq.com/openai</code>, OpenAI{' '}
+                <code>https://api.openai.com</code> — paste the matching API key. Local: LM
+                Studio / Ollama / llama.cpp with CORS enabled, no key needed. The key is
+                stored only in this browser&apos;s localStorage.
               </span>
             </div>
             <div className="ob-actions">

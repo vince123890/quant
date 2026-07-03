@@ -114,6 +114,7 @@ function normalizeLlmSettings(raw: Partial<LlmSettings> | null): LlmSettings {
         : 'http://127.0.0.1:8080',
     model:
       typeof raw?.model === 'string' && raw.model.trim() ? raw.model.trim() : 'gemma-4-e4b',
+    apiKey: typeof raw?.apiKey === 'string' ? raw.apiKey.trim() : '',
   };
 }
 
@@ -244,9 +245,11 @@ async function analyzeQuantWeb(req: QuantInsightRequest): Promise<QuantInsightRe
     );
   }
   try {
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (settings.apiKey) headers.Authorization = `Bearer ${settings.apiKey}`;
     const res = await fetch(`${settings.baseUrl}/v1/chat/completions`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       signal: AbortSignal.timeout(28_000),
       body: JSON.stringify({
         model: settings.model,

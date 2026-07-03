@@ -167,6 +167,9 @@ export interface LlmSettings {
   enabled: boolean;
   baseUrl: string;
   model: string;
+  /** Optional bearer token for hosted OpenAI-compatible providers
+   *  (OpenRouter, Groq, OpenAI, ...). Empty for local servers. */
+  apiKey?: string;
 }
 
 export interface ValuationSnapshot {
