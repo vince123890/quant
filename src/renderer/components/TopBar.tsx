@@ -147,6 +147,14 @@ export function TopBar() {
       <span className="tb-caption">ETF &amp; Equity Terminal</span>
 
       <div className="tb-right">
+        <a
+          href="/scanner"
+          className="tb-badge live"
+          style={{ textDecoration: 'none' }}
+          title="Signal Scanner: scan the universe for high-confidence trade candidates"
+        >
+          SCANNER
+        </a>
         <div className="tb-clock">
           <span className="tb-time num" title="Eastern Time (America/New_York)">
             {ET_TIME.format(now)} ET

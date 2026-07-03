@@ -1,6 +1,12 @@
 const ENDPOINTS: Array<{ method: string; path: string; example: string; desc: string }> = [
   {
     method: 'GET',
+    path: '/api/screener?symbols=SPY,QQQ,...&range=6m&top=8',
+    example: '/api/screener?range=6m',
+    desc: 'Scan a universe (default: seed watchlist + top ETF holdings), rank high-confidence trade candidates, and fuse news tone into a position verdict (add / add-small / hold / avoid with conviction %).',
+  },
+  {
+    method: 'GET',
     path: '/api/quotes?symbols=SPY,QQQ,AAPL',
     example: '/api/quotes?symbols=SPY,QQQ',
     desc: 'Live quotes: price, change, previous close (max 30 symbols).',

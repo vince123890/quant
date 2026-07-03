@@ -1,0 +1,186 @@
+/* Signal Scanner page — reuses the terminal's dark token palette. */
+
+.scanner-page {
+  min-height: 100vh;
+  background: var(--bg, #0b1017);
+  color: var(--text, #dbe4f0);
+  font-family: var(--font-ui, 'Segoe UI', system-ui, sans-serif);
+  padding: 24px clamp(16px, 4vw, 48px) 64px;
+}
+
+.scanner-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 20px;
+  margin-bottom: 6px;
+}
+
+.scanner-head h1 {
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.scanner-head .scanner-back {
+  color: #6d95ff;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.scanner-sub {
+  color: #8ba0bd;
+  font-size: 13px;
+  margin: 0 0 18px;
+  max-width: 760px;
+}
+
+.scanner-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.scanner-controls select,
+.scanner-controls button {
+  background: #121a28;
+  color: #dbe4f0;
+  border: 1px solid #24314a;
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.scanner-controls button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.scanner-meta {
+  color: #5c6f8a;
+  font-size: 12px;
+}
+
+.scanner-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #1e2a3c;
+  border-radius: 10px;
+  background: #0f1622;
+}
+
+.scanner-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 980px;
+}
+
+.scanner-table th {
+  text-align: left;
+  color: #8ba0bd;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 14px;
+  border-bottom: 1px solid #1e2a3c;
+  white-space: nowrap;
+}
+
+.scanner-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #141d2c;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.scanner-table tr:last-child td {
+  border-bottom: none;
+}
+
+.scanner-sym {
+  font-weight: 700;
+  font-family: var(--font-mono, ui-monospace, Consolas, monospace);
+}
+
+.scanner-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.scanner-badge.buy { background: rgba(31, 191, 117, 0.16); color: #1fbf75; }
+.scanner-badge.short { background: rgba(240, 90, 90, 0.16); color: #f05a5a; }
+.scanner-badge.wait { background: rgba(139, 160, 189, 0.14); color: #8ba0bd; }
+.scanner-badge.no { background: rgba(139, 160, 189, 0.08); color: #5c6f8a; }
+
+.scanner-conf {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.scanner-conf-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: #1a2436;
+  overflow: hidden;
+}
+
+.scanner-conf-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #4d7ef7, #1fbf75);
+}
+
+.scanner-tone.pos { color: #1fbf75; }
+.scanner-tone.neg { color: #f05a5a; }
+.scanner-tone.mid { color: #8ba0bd; }
+
+.scanner-verdict {
+  white-space: normal;
+  max-width: 340px;
+  min-width: 260px;
+}
+
+.scanner-verdict .v-action {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.scanner-verdict .v-action.add { color: #1fbf75; }
+.scanner-verdict .v-action.add-small { color: #a7d76a; }
+.scanner-verdict .v-action.hold { color: #e0b64f; }
+.scanner-verdict .v-action.avoid { color: #f05a5a; }
+
+.scanner-verdict .v-reasons {
+  color: #8ba0bd;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.scanner-num {
+  font-family: var(--font-mono, ui-monospace, Consolas, monospace);
+}
+
+.scanner-note {
+  color: #5c6f8a;
+  font-size: 12px;
+  margin-top: 16px;
+  max-width: 760px;
+  line-height: 1.5;
+}
+
+.scanner-loading {
+  padding: 48px 0;
+  color: #8ba0bd;
+  font-size: 14px;
+}

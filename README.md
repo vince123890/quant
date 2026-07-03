@@ -9,6 +9,7 @@ FRED CSV, Google News RSS) with deterministic sample fallback.
 
 | Endpoint | Description |
 | --- | --- |
+| `GET /api/screener?range=6m&top=8` | Scan a universe, rank high-confidence trade candidates, news-fused position verdict (UI at `/scanner`) |
 | `GET /api/quotes?symbols=SPY,QQQ` | Live quotes (price, change, previous close) |
 | `GET /api/chart/SPY?range=6m` | OHLCV candles (`1d 1w 1m 6m 1y 5y max`) |
 | `GET /api/signals/SPY?range=6m` | Deterministic signal evaluation: regime, setup, decision, risk/reward plan, pivots |

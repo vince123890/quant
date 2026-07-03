@@ -7,6 +7,7 @@ import '@/src/renderer/styles/watchlist.css';
 import '@/src/renderer/styles/news.css';
 import '@/src/renderer/styles/earnings.css';
 import '@/src/renderer/styles/chart-modal.css';
+import '@/src/renderer/styles/scanner.css';
 
 export const metadata: Metadata = {
   title: 'Quant',
